@@ -1,0 +1,37 @@
+<div class="modal fade" id="UpdateUserModal" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="UpdateUserModal" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="title">{{user.name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"  >
+          <form class="form-signin" *ngIf="user">
+            <label for="inputIdentifier" class="col-form-label" >Identifier</label>
+            <input [(ngModel)]="user.identifier" name="identifier" id="inputIdentifier" class="form-control" placeholder="carne or CUI" required autofocus>
+            <label for="inputName" class="col-form-label">Name</label>
+            <input [(ngModel)]="user.name"  name="name" id="inputName" class="form-control" placeholder="name" required >
+            <label for="inputLastname" class="col-form-label">Lastname</label>
+            <input [(ngModel)]="user.lastname"  name="lastname" id="inputLastname" class="form-control" placeholder="lastname" required >
+            <label for="inputUsername" class="col-form-label">Username</label>
+            <input [(ngModel)]="user.username" name="username" id="inputUsername" class="form-control" placeholder="username" required >
+            <label for="inputEmail" class="col-form-label">Email address</label>
+            <input  [(ngModel)]="user.email" name="email" id="inputEmail" type="email" class="form-control" placeholder="email address" required >
+            <label for="inputRole" class="col-form-label">Role</label>
+            <select class="form-control" id="role" name="role" [(ngModel)]="user.role" >
+              <option *ngFor="let role of roles" [value]="role.value">{{role.text}}</option>
+            </select>
+            <!-- <label for="inputPassword" class="col-form-label">Password</label> -->
+            <!-- <input [(ngModel)]="user.password" name="password"type="password" id="inputPassword" class="form-control" placeholder="Password" required > -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+          <button type="submit" class="btn btn-danger" data-dismiss="modal" (click)="onDelete()" >Delete</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="onSubmit()" >Save</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<div class="album py-5 bg-light">
+    <div class="container" *ngIf="books">
+      <div class="row">
+    <div class="col-md-4" *ngFor="let book of books" [ngSwitch]="book.type">
+
+        <div class="card mb-4 shadow-sm" >
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Marcador de posición: miniatura"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{book.title}}</text></svg>
+          <div class="card-body">
+            <p class="card-text"><font style="vertical-align: inherit;">
+              <tr>Author: {{book.author}}</tr>
+              <tr>Edition: {{book.edition}}</tr>
+              <tr>Description: {{book.description}}</tr>
+              <tr>Availables: {{book.availables}}</tr>
+              <tr>Code Words: {{book.codeWords}}</tr>
+            </font></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#seeBookModal" (click)="getBookForLend(book._id)"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ver</font></font></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" *ngIf="user && user.role == 'admin'" (click)="getBook(book._id)" data-toggle="modal" data-target="#updateBookModal">
+                  <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar</font></font>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar</font></font></button>
+              </div>
+              <small class="text-muted" *ngSwitchCase="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Book</font></font></small>
+              <small class="text-muted" *ngSwitchCase="2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Magazine</font></font></small>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

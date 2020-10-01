@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Users</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                 Users Table
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" *ngIf="users">
+                        <thead>
+                            <tr>
+                                <th>Identifier</th>
+                                <th>Name</th>
+                                <th>Lastname</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Control</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users" [ngSwitch]="user.role">
+                                <td>{{user.identifier}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.lastname}}</td>
+                                <td>{{user.username}}</td>
+                                <td *ngSwitchDefault >{{user.role}}</td>
+                                <td *ngSwitchCase="1" >Student</td>
+                                <td *ngSwitchCase="2" >Teacher</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-info" (click)="getUser(user._id)" data-toggle="modal" data-target="#UpdateUserModal">
+                                        <img  class="mb-4" src="../../../assets/img/edit.svg" alt="" width="36" height="36">
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                                <td>$320,800</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<router-outlet></router-outlet>
+
